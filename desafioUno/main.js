@@ -43,7 +43,7 @@ function mostrarResultado(resultado){
 
 function monstrarMenu(){
     let opcion = prompt("Bienvenido \nCalcule el precio de uno o más productos al contado con descuento y en cuotas con interés.\nSeleccione una opción (ESC para salir) \n 1. Contado (con descuento) \n 2. En 3 pagos con interés \n 3. En 6 pagos con interés \n 4. En 9 pagos con interés \n 5. En 12 pagos con interés");
-    return opcion
+    return opcion;
 }
 
 function calculo(){
@@ -55,7 +55,7 @@ function calculo(){
             let cantidad = parseFloat(prompt("Ingrese la cantidad a adquirir"));
                 
             opcionSeleccionada = parseInt(opcionSeleccionada);
-
+            
             switch(opcionSeleccionada){
                 case 1:
                     cant = cantidad;

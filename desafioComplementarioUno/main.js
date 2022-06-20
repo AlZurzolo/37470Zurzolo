@@ -22,7 +22,7 @@ if (consulta==2){
 }else if (consulta==1){
     numero=1;
     while(numero <=10){
-        alert(`Numeros pares ${numero}`);
+        alert(`Numeros impares ${numero}`);
         numero +=2;
     }
 }else{
