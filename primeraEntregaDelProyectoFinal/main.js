@@ -37,27 +37,28 @@ if(seleccion == "si"){
 while(seleccion !="no"){
     let opcion = prompt("Agrega producto al carrito");
     let precio = 0;
+    let valorACTIVIDADES = ACTIVIDADES.find(identificador => identificador.id == opcion);
 
     if(opcion == "1" || opcion == "2" || opcion == "3" || opcion == "4" || opcion == "5"){
         switch(opcion){
             case "1":
-                precio = 15000;
+                precio = valorACTIVIDADES.valor;
                 break;
 
             case "2":
-                precio = 3000;
+                precio = valorACTIVIDADES.valor;
                 break;
 
             case "3":
-                precio = 6000;
+                precio = valorACTIVIDADES.valor;
                 break;
 
             case "4":
-                precio = 3000;
+                precio = valorACTIVIDADES.valor;
                 break;
 
             case "5":
-                precio = 1000;
+                precio = valorACTIVIDADES.valor;
                 break;
 
             default:
