@@ -1,0 +1,23 @@
+$fontSizeMov:(
+    h1: 2.4rem,
+    h2: 2.2rem,
+    h3: 2rem,
+    h4: 1rem,
+);
+
+$fontSizePc:(
+    h1: 5rem,
+    h2: 4rem,
+    h3: 2.2rem,
+    h4: 2rem,
+);
+
+$h1: map-get($map: $fontSizeMov, $key: h1);
+$h2: map-get($map: $fontSizeMov, $key: h2);
+$h3: map-get($map: $fontSizeMov, $key: h3);
+$h4: map-get($map: $fontSizeMov, $key: h4);
+
+$h1p: map-get($map: $fontSizePc, $key: h1);
+$h2p: map-get($map: $fontSizePc, $key: h2);
+$h3p: map-get($map: $fontSizePc, $key: h3);
+$h4p: map-get($map: $fontSizePc, $key: h4);
