@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Carrito</title>
+    <link rel="stylesheet" href="./assets/css/normalize.css">
+    <link rel="stylesheet" href="./assets/css/skeleton.css">
+    <link rel="stylesheet" href="./assets/css/custom.css">
+</head>
+
+<body>
+    <header id="header" class="header">
+        <div class="container">
+            <div class="row">
+                <div class="four columns">
+                    <img src="./assets/img/logo_puntoalfa2.png" width=200px id="logo">
+                </div>
+                <div class="four columns u-pull-right">
+                    <ul style="list-style: none;">
+                        <li class="submenu">
+                            <img src="./assets/img/cart.svg" width=50px id="img-carrito">
+                            <div id="carrito">
+
+                                <table id="lista-carrito" class="u-full-width">
+                                    <thead>
+                                        <tr>
+                                            <th>Imagen</th>
+                                            <th>Título</th>
+                                            <th>Precio</th>
+                                            <th>Cant</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+
+                                <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="lista-cursos" class="container">
+        <h1 id="encabezado" class="encabezado">Cursos / Talleres / Actividades</h1>
+        <div class="row">
+            <div class="four columns">
+                <div class="card">
+                    <img src="./assets/img/proteccion_energetica.jpg" class="imagen-curso u-full-width">
+                    <div class="info-card">
+                        <h4>Curso de Protección Energética</h4>
+
+                        <p class="precio"><span class="u-pull-right ">$3000</span></p>
+                        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="1">Agregar
+                            Al Carrito</a>
+                    </div>
+                </div>
+                <!--.card-->
+            </div>
+            <div class="four columns">
+                <div class="card">
+                    <img src="./assets/img/retiro_virtual.png" class="imagen-curso u-full-width">
+                    <div class="info-card">
+                        <h4>Retiro virtual "Sanando el Alma"</h4>
+
+                        <p class="precio"><span class="u-pull-right ">$6000</span></p>
+                        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="2">Agregar
+                            Al Carrito</a>
+                    </div>
+                </div>
+            </div>
+            <div class="four columns">
+                <div class="card">
+                    <img src="./assets/img/sanacion7dias.png" class="imagen-curso u-full-width">
+                    <div class="info-card">
+                        <h4>Taller "Sanación de 7 días"</h4>
+                        <p class="precio"> <span class="u-pull-right ">$1000</span></p>
+                        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="3">Agregar
+                            Al Carrito</a>
+                    </div>
+                </div>
+                <!--.card-->
+            </div>
+
+        </div>
+        <!--.row-->
+        <div class="row">
+            <div class="four columns">
+                <div class="card">
+                    <img src="./assets/img/transformacionPersonal.jpg" class="imagen-curso u-full-width">
+                    <div class="info-card">
+                        <h4>Taller "Transfoemación Personal"</h4>
+                        <p class="precio"><span class="u-pull-right ">$4000</span></p>
+                        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="4">Agregar
+                            Al Carrito</a>
+                    </div>
+                </div>
+                <!--.card-->
+            </div>
+            <div class="four columns">
+                <div class="card">
+                    <img src="./assets/img/transgeneracional.png" class="imagen-curso u-full-width">
+                    <div class="info-card">
+                        <h4>Formación en Terapia Transgeneracional"</h4>
+                        <p class="precio"><span class="u-pull-right ">$15000</span></p>
+                        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="5">Agregar
+                            Al Carrito</a>
+                    </div>
+                </div>
+                <!--.card-->
+            </div>
+        </div>
+        <script src="./assets/js/main.js"></script>
+    </div>
+
+</body>
+
+</html>
