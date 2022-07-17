@@ -3,120 +3,62 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Carrito</title>
-    <link rel="stylesheet" href="./assets/css/normalize.css">
-    <link rel="stylesheet" href="./assets/css/skeleton.css">
-    <link rel="stylesheet" href="./assets/css/custom.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <!-- Fin bootstrap -->
+    <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+
+    <!-- SEO -->
+    <meta name="keywords" content="Información sobre nosotros en Punto ALFA, Aldo Zurzolo y Fafa Portella">
+    <meta name="description" content="Información sobre nosotros en Punto ALFA, Aldo Zurzolo y Fafa Portella">
+    <!-- Open Graph -->
+    <meta property="og:url" content="http://www.puntoalfa.ar/page/nosotros.html">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nosotros | Un camino holístico para la sanación del Alma">
+    <meta property="og:description" content="Información sobre nosotros en Punto ALFA, Aldo Zurzolo y Fafa Portella">
+    <meta property="og:image" content="http://www.puntoalfa.ar/puntoalfa/assets/img/aldo_zurzolo-fafa_portella.jpg">
+
+    <title>Compras 🛒</title>
 </head>
 
 <body>
-    <header id="header" class="header">
-        <div class="container">
-            <div class="row">
-                <div class="four columns">
-                    <img src="./assets/img/logo_puntoalfa2.png" width=200px id="logo">
-                </div>
-                <div class="four columns u-pull-right">
-                    <ul style="list-style: none;">
-                        <li class="submenu">
-                            <img src="./assets/img/cart.svg" width=50px id="img-carrito">
-                            <div id="carrito">
+    <!-- encabezado -->
+    <header class="hero">
 
-                                <table id="lista-carrito" class="u-full-width">
-                                    <thead>
-                                        <tr>
-                                            <th>Imagen</th>
-                                            <th>Título</th>
-                                            <th>Precio</th>
-                                            <th>Cant</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
 
-                                <a href="#" id="vaciar-carrito" class="button u-full-width">Vaciar Carrito</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+
     </header>
+    <!-- fin encabezado -->
 
-    <div id="lista-cursos" class="container">
-        <h1 id="encabezado" class="encabezado">Cursos / Talleres / Actividades</h1>
-        <div class="row">
-            <div class="four columns">
-                <div class="card">
-                    <img src="./assets/img/proteccion_energetica.jpg" class="imagen-curso u-full-width">
-                    <div class="info-card">
-                        <h4>Curso de Protección Energética</h4>
+    <!--compras-->
+    <section id="compras">
 
-                        <p class="precio"><span class="u-pull-right ">$3000</span></p>
-                        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="1">Agregar
-                            Al Carrito</a>
-                    </div>
-                </div>
-                <!--.card-->
-            </div>
-            <div class="four columns">
-                <div class="card">
-                    <img src="./assets/img/retiro_virtual.png" class="imagen-curso u-full-width">
-                    <div class="info-card">
-                        <h4>Retiro virtual "Sanando el Alma"</h4>
+        <header class="container">
+            <h1 class="text-center">Catálogo</h1>
 
-                        <p class="precio"><span class="u-pull-right ">$6000</span></p>
-                        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="2">Agregar
-                            Al Carrito</a>
-                    </div>
-                </div>
-            </div>
-            <div class="four columns">
-                <div class="card">
-                    <img src="./assets/img/sanacion7dias.png" class="imagen-curso u-full-width">
-                    <div class="info-card">
-                        <h4>Taller "Sanación de 7 días"</h4>
-                        <p class="precio"> <span class="u-pull-right ">$1000</span></p>
-                        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="3">Agregar
-                            Al Carrito</a>
-                    </div>
-                </div>
-                <!--.card-->
-            </div>
+            <div class="row" id="cards"></div>
+            <hr>
+            <h1 class="text-center">🛒 Carrito de compras</h1>
+            <div class="col-md-6"></div>
 
-        </div>
-        <!--.row-->
-        <div class="row">
-            <div class="four columns">
-                <div class="card">
-                    <img src="./assets/img/transformacionPersonal.jpg" class="imagen-curso u-full-width">
-                    <div class="info-card">
-                        <h4>Taller "Transfoemación Personal"</h4>
-                        <p class="precio"><span class="u-pull-right ">$4000</span></p>
-                        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="4">Agregar
-                            Al Carrito</a>
-                    </div>
-                </div>
-                <!--.card-->
-            </div>
-            <div class="four columns">
-                <div class="card">
-                    <img src="./assets/img/transgeneracional.png" class="imagen-curso u-full-width">
-                    <div class="info-card">
-                        <h4>Formación en Terapia Transgeneracional"</h4>
-                        <p class="precio"><span class="u-pull-right ">$15000</span></p>
-                        <a href="#" class="u-full-width button-primary button input agregar-carrito" data-id="5">Agregar
-                            Al Carrito</a>
-                    </div>
-                </div>
-                <!--.card-->
-            </div>
-        </div>
-        <script src="./assets/js/main.js"></script>
-    </div>
+            <div id="carrito"></div>
+            <!-- <div class="container"><a href="#" class="btn btn-danger limpiarCarrito">Limpiar carrito</a></div> -->
+        </header>
+
+    </section>
+
+    <!-- fin compras -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/main.js"></script>
 
 </body>
 
