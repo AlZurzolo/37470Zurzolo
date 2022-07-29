@@ -1,0 +1,50 @@
+[
+    {
+        "id":1,
+        "title": "Formación en Transgeneracional",
+        "precio": 15000,
+        "img":"./assets/img/transgeneracional.png",
+        "stock":10,
+        "cantidad": 1
+    },
+    {
+        "id":2,
+        "title": "Protección Energética",
+        "precio": 3000,
+        "img": "./assets/img/proteccion_energetica.jpg",
+        "stock":6,
+        "cantidad": 1
+    },
+    {
+        "id":3,
+        "title":"Retiro 'Sanando el Alma'",
+        "precio": 6000,
+        "img":"./assets/img/retiro_virtual.png",
+        "stock":9,
+        "cantidad": 1
+    },
+    {
+        "id":4,
+        "title":"Transformación Personal",
+        "precio": 6000,
+        "img":"./assets/img/transformacionPersonal.jpg",
+        "stock":5,
+        "cantidad": 1
+    },
+    {
+        "id":5,
+        "title":"Taller 7 Días de Sanación",
+        "precio": 1000,
+        "img":"./assets/img/sanacion7dias.png",
+        "stock":3,
+        "cantidad": 1
+    },
+    {
+        "id":6,
+        "title":"Terapia de vidas pasadas",
+        "precio": 160000,
+        "img":"./assets/img/tvp.jpg",
+        "stock":3,
+        "cantidad": 1
+    }
+]

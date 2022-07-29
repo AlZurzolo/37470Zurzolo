@@ -1,0 +1,9 @@
+.body{
+    height: 0;
+    padding: 0;
+}
+
+.efBox{
+    box-shadow: 0 0 20px 0 rgba(75, 4, 4, 0.6);
+    border-radius: 10px;
+}

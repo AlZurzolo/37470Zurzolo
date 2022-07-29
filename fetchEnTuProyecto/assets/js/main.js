@@ -1,217 +1,172 @@
-let carrito = new Carrito();
-let carrito_view = new Carrito_View();
+const cards = document.getElementById('cards')
+const items = document.getElementById('items')
+const footer = document.getElementById('footer')
+const templateCard = document.getElementById('template-card').content
+const templateFooter = document.getElementById('template-footer').content
+const templateCarrito = document.getElementById('template-carrito').content
+const fragment = document.createDocumentFragment()
+let carrito = {}
 
-function $(selector){
-    return document.querySelector(selector);
+// Eventos
+// El evento DOMContentLoaded es disparado cuando el documento HTML ha sido completamente cargado y parseado
+document.addEventListener('DOMContentLoaded', e => { 
+    fetchData()
+    if(localStorage.getItem("carrito")){
+        carrito = JSON.parse(localStorage.getItem("carrito"))
+        pintarCarrito()
+        }        
+    });
+cards.addEventListener('click', e => { addCarrito(e) });
+items.addEventListener('click', e => { btnAumentarDisminuir(e) })
+
+// Traer productos
+const fetchData = async () => {
+    const res = await fetch('./assets/json/productos.json');
+    const data = await res.json()
+    
+    pintarCards(data)
 }
 
-function Carrito(){
-    async function obtenerJson() {
-        try{
-            const response = await fetch("./assets/js/jsonTest.json");
-            this.catalogo = await response.json();
-    
-            console.log(this.catalogo)
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    obtenerJson();
-    //this.catalogo = [
-                    //{id:'P01',nombre:'Formación en Transgeneracional',precio:15000,imagen:'transgeneracional.png'},
-                    //{id:'P02',nombre:'Protección Energética',precio:3000,imagen:'proteccion_energetica.jpg'},
-                    //{id:'P03',nombre:'Retiro "Sanando el Alma"',precio:6000,imagen:'retiro_virtual.png'},
-                    //{id:'P04',nombre:'Transformación Personal',precio:6000,imagen:'transformacionPersonal.jpg'},
-                    //{id:'P05',nombre:'Taller 7 Días de Sanación',precio:1000,imagen:'sanacion7dias.png'},
-                    //];
-    
-                    
-    this.constructor = function(){
-        if(!localStorage.getItem("carrito")){
-            localStorage.setItem("carrito",'[]');
-        }
-    }
-    this.getCarrito = JSON.parse(localStorage.getItem("carrito"));
-    // Agrega producto
-    this.agregarItem = function(item){
-        // Se chequea si el producto existe en el catálogo
-        let registro = 0;
-        for(let i of this.catalogo){
-            if(i.id === item){
-                    registro = i
-            }
-        }
-        // Si no hay producto, corta la ejecución
-        if(!registro){
-            return;
-        }
-        // Busca si el item está o no en el carrito   
-        for (let i of this.getCarrito){
-            if(i.id === item){
-                // De estar, lo suma a cantidad
-                i.cantidad++; // Optimización
-                //console.log(this.getCarrito);
-                localStorage.setItem("carrito",JSON.stringify(this.getCarrito));
-                return;
-            }
-        }
-        // Si no esta repetido agrega la cantidad = 1
-        registro.cantidad = 1;
+// Pintar productos
+const pintarCards = data => {
+    data.forEach(item => {
+        templateCard.querySelector('h5').textContent = item.title
+        templateCard.querySelector('p').textContent = item.precio
+        templateCard.querySelector('img').setAttribute("src", item.img)
+        templateCard.querySelector('button').dataset.id = item.id
+        const clone = templateCard.cloneNode(true)
+        fragment.appendChild(clone)
+    })
+    cards.appendChild(fragment)
+}
+
+// Agregar al carrito
+const addCarrito = e => {
+    if (e.target.classList.contains('btn-dark')) {
         
-        this.getCarrito.push(registro);
-        console.log(this.getCarrito);
-        localStorage.setItem("carrito",JSON.stringify(this.getCarrito));
+        setCarrito(e.target.parentElement)
+        Toastify({
+            text: `Producto  agregado`,
+            className: "info",
+            style:{
+                background: "rgba(28, 131, 24, 0.8)",
+            },
+            duration: 3000
+        }).showToast();
     }
-    // Suma todos los productos del carrito
-    this.getTotal = function(){
-        let total = 0;
-        for (let i of this.getCarrito) {
-            total += parseFloat(i.cantidad) * parseFloat(i.precio);
-        }
-        return total;
-    }
-    // Eliminar producto del carrito
-    this.eliminarItem = function(item){
-        for (let i in this.getCarrito) {
-            if(this.getCarrito[i].id === item){
-                    this.getCarrito.splice(i,1);
-
-                    Toastify({
-                        text: 'Producto borrado',
-                        durayion: 3000,
-                        position: 'center',
-                        style: {
-                            background: 'red',
-                        }
-                    }).showToast();
-            }
-        }
-        localStorage.setItem("carrito",JSON.stringify(this.getCarrito));
-    }
+    e.stopPropagation()
 }
-// Se pintan los productos en pantalla
-function Carrito_View(){
-    this.renderCatalogo = function(){
-        let template = ``;
-        for (let i in carrito.catalogo) {
-            template += `
-            <div class="column is-one-quarter">
-            <div class="card">
-                <div class="card-image">
-                    <img src="./assets/img/${carrito.catalogo[i].imagen}" alt="Placeholder">
-                </div>
-                <div class="card-content">
-                    <h2 class="title is-4">${carrito.catalogo[i].nombre}</h2>
-                    <br>
-                    <h3 class="subtitle is-5">Precio:<strong>$${carrito.catalogo[i].precio}</strong></h3>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="card-footer-item" id="addItem" data-producto="${carrito.catalogo[i].id}">Agregar al Carrito</a>
-                </div>
-                </div>
-            </div>
-            `;
-        }
 
-        $("#catalogo").innerHTML = template;
+const setCarrito = item => {
+    const producto = {
+        title: item.querySelector('h5').textContent,
+        precio: item.querySelector('p').textContent,
+        id: item.querySelector('button').dataset.id,
+        cantidad: 1
+    }
+    if (carrito.hasOwnProperty(producto.id)) {
+        producto.cantidad = carrito[producto.id].cantidad + 1;
     }
 
-    this.showModal = function(){
-        $("#modal").classList.toggle('is-active');
-        this.renderCarrito();
-    }
-
-    this.hideModal = function(ev){
-        if (ev.target.classList.contains("toggle")) {
-            this.showModal();
-        }
-    }
-    // Pinta productos del carrito
-    this.renderCarrito = function(){
-        // Compara si el carrito está vacío, nos imprime un texto
-        if(carrito.getCarrito.length <= 0){
-            let template = `<div class="is-12"><p class="title is-2 has-text-centered">No hay productos en el carrito</p></div><br>`;
-            $("#productosCarrito").innerHTML = template;
-        }else{
-            $("#productosCarrito").innerHTML = ""; // Borra el texto que no hay productos
-            let template = ``
-            for(let i of carrito.getCarrito){
-                template += `
-                <div class="columns">
-                <div class="column is-3">
-                <figure>
-                <img src="./assets/img/${i.imagen}" alt="">
-                </figure>
-                </div>
-                <div class="column is-3">${i.nombre}</div>
-                <div class="column is-2 has-text-centered">$${i.precio}</div>
-                <div class="column is-1 has-text-centered">${i.cantidad}</div>
-                <div class="column is-2 has-text-centered"><strong><i>$${i.cantidad * i.precio}</i></strong></div>
-                <div class="column is-1"><p class="field"><a href="#" class="button is-danger"><span class="icon"><i class="fa fa-trash-o" id="deleteProducto" data-producto="${i.id}"></i></span></a></p></div>
-                </div>
-                `;
-            }
-            // Lo pinta en el modal
-            $("#productosCarrito").innerHTML = template;
-        }
-        // Se invoca función del total
-        $("#totalCarrito > strong").innerHTML = "$"+carrito.getTotal();
-    }
-    // Muestra la cantidad de productos dentro del carrito
-    this.totalProductos = function(){
-        let total = carrito.getCarrito.length;
-        //console.log(total);
-        //Lo pinta en el rectángulo del carrito en el html
-        $("#totalProductos > strong").innerHTML = total
-    }
+    carrito[producto.id] = { ...producto }
+    
+    pintarCarrito()
 }
-// Invocaciones                                
-document.addEventListener('DOMContentLoaded',function(){
-    carrito.constructor();
-    carrito_view.renderCatalogo();
-    carrito_view.totalProductos();
-});
-                
-$("#btn_carrito").addEventListener("click",function(){
-    carrito_view.showModal();
-});
-                
-$("#modal").addEventListener("click",function(ev){
-    carrito_view.hideModal(ev);
-});
-// Obtiene el click de agregar al carrito del producto                
-$("#catalogo").addEventListener("click",function(ev){
-    ev.preventDefault();
-    if(ev.target.id === "addItem"){
-        let id = ev.target.dataset.producto; // Se obtiene el id del producto
-        carrito.agregarItem(id);
+
+const pintarCarrito = () => {
+    items.innerHTML = ''
+
+    Object.values(carrito).forEach(producto => {
+        templateCarrito.querySelector('th').textContent = producto.id
+        templateCarrito.querySelectorAll('td')[0].textContent = producto.title
+        templateCarrito.querySelectorAll('td')[1].textContent = producto.cantidad
+        templateCarrito.querySelector('span').textContent = producto.precio * producto.cantidad
+        
+        //botones
+        templateCarrito.querySelector('.btn-info').dataset.id = producto.id
+        templateCarrito.querySelector('.btn-danger').dataset.id = producto.id
+
+        const clone = templateCarrito.cloneNode(true)
+        fragment.appendChild(clone)
+    })
+    items.appendChild(fragment)
+
+    pintarFooter()
+
+    localStorage.setItem("carrito", JSON.stringify(carrito))
+}
+
+const pintarFooter = () => {
+    footer.innerHTML = ''
+    
+    if (Object.keys(carrito).length === 0) {
+        footer.innerHTML = `
+        <th scope="row" colspan="5">Carrito vacío</th>
+        `
+        return
     }
     
-    Toastify({
-        text: 'Producto agregado',
-        durayion: 3000,
-        position: 'center',
-        style: {
-            background: 'green'
-        }
-    }).showToast();
-   
-    carrito_view.showModal();
-    carrito_view.totalProductos(); 
-});
-// Delegación de eventos              
-$("#productosCarrito").addEventListener("click",function(ev){
-    ev.preventDefault();
-    if(ev.target.id === "deleteProducto"){
-        carrito.eliminarItem(ev.target.dataset.producto);
-        carrito_view.renderCarrito();
-        carrito_view.totalProductos();
-    }
-});
+    // sumar cantidad y sumar totales
+    const nCantidad = Object.values(carrito).reduce((acc, { cantidad }) => acc + cantidad, 0)
+    const nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + cantidad * precio ,0)
+    
+    templateFooter.querySelectorAll('td')[0].textContent = nCantidad
+    templateFooter.querySelector('span').textContent = nPrecio
 
-function main() {
-    Carrito();
-    Carrito_View();
+    const clone = templateFooter.cloneNode(true)
+    fragment.appendChild(clone)
+
+    footer.appendChild(fragment)
+
+    const boton = document.querySelector('#vaciar-carrito')
+    boton.addEventListener('click', () => {
+        carrito = {}
+        pintarCarrito()
+    })
+
 }
 
-main();
+const btnAumentarDisminuir = e => {
+    if (e.target.classList.contains('btn-info')) {
+        const producto = carrito[e.target.dataset.id]
+        producto.cantidad++
+        carrito[e.target.dataset.id] = { ...producto }
+        Toastify({
+            text: `Producto  agregado`,
+            className: "info",
+            style:{
+                background: "rgba(28, 131, 24, 0.8)",
+            },
+            duration: 3000
+        }).showToast();
+        pintarCarrito()
+    }
+
+    if (e.target.classList.contains('btn-danger')) {
+        const producto = carrito[e.target.dataset.id]
+        producto.cantidad--
+        if (producto.cantidad === 0) {
+            delete carrito[e.target.dataset.id]
+            Toastify({
+                text: `Producto  eliminado`,
+                className: "info",
+                style:{
+                    background: "rgba(219, 24, 24, 0.8)",
+                },
+                duration: 3000
+            }).showToast();
+        } else {
+            carrito[e.target.dataset.id] = {...producto}
+            Toastify({
+                text: `Producto  eliminado`,
+                className: "info",
+                style:{
+                    background: "rgba(219, 24, 24, 0.8)",
+                },
+                duration: 3000
+            }).showToast();
+        }
+        pintarCarrito()
+    }
+    e.stopPropagation()
+}
