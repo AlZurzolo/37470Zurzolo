@@ -18,24 +18,13 @@ function $(selector){
 // obtenerJson();
 
 function Carrito(){
-    // async function obtenerJson() {
-    //     try{
-    //         const response = await fetch("./assets/js/jsonTest.json");
-    //         let data = await response.json();
-    //         this.catalogo = data;
-    //         console.log(catalogo)
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
-    // obtenerJson();
-    //this.catalogo = [
-                    //{id:'P01',nombre:'Formación en Transgeneracional',precio:15000,imagen:'transgeneracional.png'},
-                    //{id:'P02',nombre:'Protección Energética',precio:3000,imagen:'proteccion_energetica.jpg'},
-                    //{id:'P03',nombre:'Retiro "Sanando el Alma"',precio:6000,imagen:'retiro_virtual.png'},
-                    //{id:'P04',nombre:'Transformación Personal',precio:6000,imagen:'transformacionPersonal.jpg'},
-                    //{id:'P05',nombre:'Taller 7 Días de Sanación',precio:1000,imagen:'sanacion7dias.png'},
-                    //];
+    this.catalogo = [
+                    {id:'P01',nombre:'Formación en Transgeneracional',precio:15000,imagen:'transgeneracional.png'},
+                    {id:'P02',nombre:'Protección Energética',precio:3000,imagen:'proteccion_energetica.jpg'},
+                    {id:'P03',nombre:'Retiro "Sanando el Alma"',precio:6000,imagen:'retiro_virtual.png'},
+                    {id:'P04',nombre:'Transformación Personal',precio:6000,imagen:'transformacionPersonal.jpg'},
+                    {id:'P05',nombre:'Taller 7 Días de Sanación',precio:1000,imagen:'sanacion7dias.png'},
+                    ];
     
                     
     this.constructor = function(){
